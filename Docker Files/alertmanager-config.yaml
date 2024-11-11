@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  namespace: monitoring
+data:
+  alertmanager.yaml: |
+    global:
+      resolve_timeout: 5m
+    inhibit_rules:
+    - equal:
+      - namespace
+      - alertname
+      source_matchers:
+      - severity = critical
+      target_matchers:
+      - severity =~ warning|info
+    receivers:
+    - name: 'slack-notifications'
+      slack_configs:
+      - api_url: 'https://hooks.slack.com/services/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'
+        channel: '#all-cloud-alert-check'
+        send_resolved: true
+    route:
+      receiver: 'slack-notifications'
+      group_by: ['namespace']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Flask application service
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Points to the Dockerfile for Flask
+    ports:
+      - "5001:5000"           # Maps container port 5000 to local port 5001
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/camp2016
+
+  # MongoDB service
+  mongo:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"         # Maps MongoDB port for local access
+    volumes:
+      - mongo_data:/data/db   # Persists MongoDB data to a named volume
+
+# Define a volume for MongoDB data
+volumes:
+  mongo_data:

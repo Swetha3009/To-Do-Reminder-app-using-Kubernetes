@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"prometheus","app.kubernetes.io/name":"alertmanager"},"name":"storage-prometheus-alertmanager-0","namespace":"monitoring"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"2Gi"}},"storageClassName":"gp2","volumeMode":"Filesystem"}}
+    pv.kubernetes.io/bind-completed: "yes"
+    pv.kubernetes.io/bound-by-controller: "yes"
+  creationTimestamp: "2024-11-08T04:24:28Z"
+  deletionGracePeriodSeconds: 0
+  deletionTimestamp: "2024-11-08T04:25:50Z"
+  labels:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/name: alertmanager
+  name: storage-prometheus-alertmanager-0
+  namespace: monitoring
+  resourceVersion: "71031"
+  uid: fa6b9255-71e5-43f7-bb37-712e7111426f
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: gp2
+  volumeMode: Filesystem
+  volumeName: alertmanager-pv
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  phase: Bound

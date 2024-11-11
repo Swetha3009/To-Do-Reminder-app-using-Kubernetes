@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:  
+    name: flask-service
+spec:
+    type: LoadBalancer  
+    ports:  
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+    selector:    
+        app: flask
+        
+---
+# MongoDB Service
+apiVersion: v1
+kind: Service
+metadata:  
+    name: mongo-service
+spec:
+    ports:  
+      - protocol: TCP
+        port: 27017
+        targetPort: 27017
+    selector:
+      app: mongo-db
