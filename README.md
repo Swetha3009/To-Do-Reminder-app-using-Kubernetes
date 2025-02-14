@@ -1,1 +1,1 @@
-# Flask-kubernetes-app
+# To Do Reminder app using Kubernetes
